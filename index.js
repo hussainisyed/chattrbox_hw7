@@ -4,6 +4,7 @@ var fs = require('fs');
 //Imported custom module using the require function.
 //Assigned the value of the module to the new variable extract.
 var extract = require('./extract');
+//eslint-disable-next-line no-unused-vars
 var wss = require('./websockets-server');
 var mime = require('mime');
 
