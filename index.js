@@ -11,7 +11,9 @@ var mime = require('mime');
 //check for a file error and write a 404 error code if one is found
 var handleError = function(err, res) {
   res.writeHead(404);
-  res.end();
+  fs.readFile('app/error.html', function(err, data) {
+    res.end(data);
+  });
 };
 
 var server = http.createServer(function(req, res) {
