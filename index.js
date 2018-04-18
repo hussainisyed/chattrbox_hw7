@@ -8,12 +8,17 @@ var extract = require('./extract');
 var wss = require('./websockets-server');
 var mime = require('mime');
 
-//check for a file error and write a 404 error code if one is found
+//Display error page
 var handleError = function(err, res) {
-  res.writeHead(404);
-  fs.readFile('app/error.html', function(err, data) {
-    res.end(data);
+  res.writeHead(404, {
+    'Content-Type': 'text/html'
   });
+
+  // Get readable stream from custom error page
+  var file = fs.createReadStream('./app/error.html');
+
+  // Write readable stream to response object (writeable stream)
+  file.pipe(res);
 };
 
 var server = http.createServer(function(req, res) {
